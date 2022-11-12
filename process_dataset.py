@@ -31,7 +31,7 @@ def move_img_annot(files, directory_images, directory_labels, target_directory_i
         os.rename(directory_labels + '/' + file_name, target_directory_labels + '/' + file_name)
         continue
 
-def data_subset(directory_path, target_directory_path, percentage):
+def data_subset(directory_path, target_directory_path, percent):
     """ Takes a subset of the dataset and moves it to the target directory.
 
     :param directory_path: path to directory with the images/annotations
@@ -47,8 +47,8 @@ def data_subset(directory_path, target_directory_path, percentage):
     # make a list of all files in `directory_images` that are jpgs
     files = [f for f in os.listdir(directory_images) if f.endswith('.jpg')]
 
-    # randomly select `percentage` of the image files
-    random_files = random.sample(files, int(len(files) * percentage))
+    # randomly select `percent` percent of the image files
+    random_files = random.sample(files, int(len(files) * percent))
 
     # move randomly selected images and annotations to the target directory
     move_img_annot(random_files, directory_images, directory_labels, target_directory_images, target_directory_labels, ".json")
@@ -60,6 +60,8 @@ def split_train_valid_test(directory_path, train_percent, valid_percent):
     :param train_percent: percentage of data that will be for training
     :param valid_percent: percentage of data that will be for validation
     """
+    assert(train_percent + dev_percent < 1)
+
     # set paths
     directory_images = str(directory_path + "/images")
     directory_labels = str(directory_path + "/labels")
@@ -203,11 +205,11 @@ def remove_jsons(jsons, directory_path):
 if __name__ == '__main__':
     directory_path = 'C:/Users/Anton Lok/Desktop/Yolov7 Mapillary Project/mtsd_v2_fully_annotated'
     new_directory_path = directory_path + "/custom_dataset"
-    dataset_percentage = float(0.2)
+    dataset_percent = float(0.2)
     # directory_path = '/Users/kaitlinpeng/Kaitlin/School/CS 230/mapillary-yolo/mapillary_tiny_sample'
     # new_directory_path = directory_path + "/custom_dataset"
     # dataset_percentage = float(1)
-    data_subset(directory_path, new_directory_path, dataset_percentage)
+    data_subset(directory_path, new_directory_path, dataset_percent)
     
     jsons = jsons_to_yolos(new_directory_path)
     # remove_jsons(jsons, directory_path)  # UNCOMMENT IF YOU WANT TO DELETE THE JSONS
