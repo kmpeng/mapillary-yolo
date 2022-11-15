@@ -8,7 +8,7 @@ from utils.convert_yolo import *
 if __name__ == '__main__':
     directory_path = 'C:/Users/Anton Lok/Desktop/Yolov7 Mapillary Project/mtsd_v2_fully_annotated'
     new_directory_path = directory_path + "/custom_dataset"
-    dataset_percent = float(0.2)
+    dataset_percent = float(0.2)  # change number to 1 if want whole dataset
     data_subset(directory_path, new_directory_path, dataset_percent)
     
     jsons = jsons_to_yolos(new_directory_path)
