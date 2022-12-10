@@ -1,5 +1,5 @@
-weights: yolov5FULL/30epochs/weights/last.pt
-cfg: ''
+weights: yolov5l.pt
+cfg: models/yolov5l.yaml
 data: /home/ubuntu/datasets/custom_full_dataset/data.yaml
 hyp:
   lr0: 0.01
@@ -32,7 +32,7 @@ hyp:
   copy_paste: 0.0
 epochs: 100
 batch_size: 16
-imgsz: 416
+imgsz: 640
 rect: false
 resume: true
 nosave: false
@@ -49,8 +49,8 @@ single_cls: false
 optimizer: SGD
 sync_bn: false
 workers: 24
-project: yolov5FULL
-name: 30epochs
+project: runs/train
+name: yolov5_baseline
 exist_ok: false
 quad: false
 cos_lr: false
@@ -65,4 +65,4 @@ entity: null
 upload_dataset: false
 bbox_interval: -1
 artifact_alias: latest
-save_dir: yolov5FULL/30epochs
+save_dir: runs/train/yolov5_baseline

@@ -39,5 +39,5 @@ freeze:
 v5_metric: false
 world_size: 1
 global_rank: -1
-save_dir: runs/train/yolov7-cbam4
+save_dir: runs/train/yolov7-cbam
 total_batch_size: 16
